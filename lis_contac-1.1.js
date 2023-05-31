@@ -43,6 +43,14 @@ function borrarContacto(id) {
     listaContactos.splice(indice, 1);
   }
 }
+function actualizarContacto(id, nuevosDatos) {
+  let indice = listaContactos.findIndex(function (contacto) {
+    return contacto.id === id;
+  });
+  if (indice !== -1) {
+    listaContactos[indice] = { ...listaContactos[indice], ...nuevosDatos };
+  }
+}
 
 function imprimirContactos() {
   listaContactos.forEach(contacto => console.log(contacto));
@@ -60,5 +68,15 @@ agregarContacto({
 });
 imprimirContactos();
 borrarContacto(2);
+imprimirContactos();
+actualizarContacto(3, {
+  nombres: "pepito",
+  apellidos: "perez",
+  telefono: "555-1111",
+  ubicaciones: {
+    ciudad: "tukajistan",
+    direccion: "manzana b casa 10"
+  }
+});
 imprimirContactos();
 
